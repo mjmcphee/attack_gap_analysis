@@ -1,0 +1,49 @@
+# Handoff documentation files (do not include in repo)
+handoff.md
+spec.md
+notebook.md
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Output files (optional - uncomment if you don't want to track outputs)
+# output/*
+# !output/.gitkeep
+
+# Data files that might be sensitive
+# data/*
+# !data/.gitkeep
+# !data/dettect_coverage.yaml
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.log

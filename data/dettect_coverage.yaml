@@ -1,0 +1,138 @@
+version: 1.0
+name: Sample Detection Coverage
+platform: Windows
+techniques:
+  - technique_id: T1566.001
+    technique_name: Phishing - Spearphishing Attachment
+    visibility:
+      - score: 3
+        comment: Email gateway logs available
+    detection:
+      - score: 2
+        comment: Basic YARA rules for attachments
+
+  - technique_id: T1566.002
+    technique_name: Phishing - Spearphishing Link
+    visibility:
+      - score: 4
+        comment: Web proxy and email logs
+    detection:
+      - score: 3
+        comment: URL reputation and sandboxing
+
+  - technique_id: T1059.001
+    technique_name: Command and Scripting Interpreter - PowerShell
+    visibility:
+      - score: 4
+        comment: PowerShell logging enabled
+    detection:
+      - score: 3
+        comment: Suspicious PowerShell patterns detected
+
+  - technique_id: T1059.003
+    technique_name: Command and Scripting Interpreter - Windows Command Shell
+    visibility:
+      - score: 3
+        comment: Process creation logging
+    detection:
+      - score: 2
+        comment: Limited cmd.exe monitoring
+
+  - technique_id: T1053.005
+    technique_name: Scheduled Task/Job - Scheduled Task
+    visibility:
+      - score: 3
+        comment: Task scheduler logs available
+    detection:
+      - score: 2
+        comment: Manual review of suspicious tasks
+
+  - technique_id: T1055.001
+    technique_name: Process Injection - Dynamic-link Library Injection
+    visibility:
+      - score: 2
+        comment: Limited process monitoring
+    detection:
+      - score: 1
+        comment: No automated detection
+
+  - technique_id: T1071.001
+    technique_name: Application Layer Protocol - Web Protocols
+    visibility:
+      - score: 4
+        comment: Web proxy logs comprehensive
+    detection:
+      - score: 2
+        comment: Basic anomaly detection
+
+  - technique_id: T1083
+    technique_name: File and Directory Discovery
+    visibility:
+      - score: 3
+        comment: File access auditing partial
+    detection:
+      - score: 1
+        comment: No behavioral detection
+
+  - technique_id: T1087.001
+    technique_name: Account Discovery - Local Account
+    visibility:
+      - score: 3
+        comment: Security event logs
+    detection:
+      - score: 2
+        comment: Alerting on net user commands
+
+  - technique_id: T1003.001
+    technique_name: OS Credential Dumping - LSASS Memory
+    visibility:
+      - score: 4
+        comment: EDR process monitoring
+    detection:
+      - score: 4
+        comment: LSASS access detection enabled
+
+  - technique_id: T1021.001
+    technique_name: Remote Services - Remote Desktop Protocol
+    visibility:
+      - score: 4
+        comment: RDP connection logs
+    detection:
+      - score: 3
+        comment: Unusual RDP activity alerts
+
+  - technique_id: T1027
+    technique_name: Obfuscated Files or Information
+    visibility:
+      - score: 2
+        comment: Limited file analysis
+    detection:
+      - score: 1
+        comment: No deobfuscation capability
+
+  - technique_id: T1486
+    technique_name: Data Encrypted for Impact
+    visibility:
+      - score: 3
+        comment: File system monitoring
+    detection:
+      - score: 3
+        comment: Ransomware behavior detection
+
+  - technique_id: T1490
+    technique_name: Inhibit System Recovery
+    visibility:
+      - score: 4
+        comment: Backup system logs
+    detection:
+      - score: 4
+        comment: Alerts on backup deletion
+
+  - technique_id: T1070.001
+    technique_name: Indicator Removal - Clear Windows Event Logs
+    visibility:
+      - score: 3
+        comment: Event log monitoring
+    detection:
+      - score: 2
+        comment: Log clearing detection partial
