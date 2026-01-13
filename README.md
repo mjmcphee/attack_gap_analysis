@@ -251,7 +251,7 @@ attack_gap_analysis/
 
 ```python
 # ATT&CK Version
-ATTACK_VERSION = "17"
+ATTACK_VERSION = "18"
 
 # Directory paths
 OUTPUT_DIR = Path("./output")
@@ -347,5 +347,5 @@ For issues, questions, or enhancements:
 ---
 
 **Version**: 1.0
-**ATT&CK Version**: 17
-**Last Updated**: 2026-01-12
+**ATT&CK Version**: 18
+**Last Updated**: 2026-01-13
