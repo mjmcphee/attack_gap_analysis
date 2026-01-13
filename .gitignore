@@ -14,6 +14,9 @@ __pycache__/
 *.so
 .Python
 
+# Auto-downloaded tools (downloaded by notebook)
+attack_parser.py
+
 # Virtual environments
 venv/
 env/
