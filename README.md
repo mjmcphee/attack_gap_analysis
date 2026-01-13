@@ -50,6 +50,8 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+**Note:** The optional `attack_parser.py` tool (for parsing threat reports) is automatically downloaded when you run the notebook. No additional installation needed!
+
 ## Quick Start
 
 1. **Launch Jupyter Notebook**:
@@ -57,20 +59,25 @@ pip install -r requirements.txt
 jupyter notebook attack_gap_analysis.ipynb
 ```
 
-2. **Configure Threat Actors** (Cell 8):
+2. **(Optional) Select ATT&CK Version** (Cell 1):
+   - Default is version 18 (latest)
+   - Edit `ATTACK_VERSION = "18"` to use a different version (10-18)
+   - Restart kernel after changing: `Kernel → Restart & Run All`
+
+3. **Configure Threat Actors** (Cell 8):
    - Edit the `THREAT_ACTORS` configuration
    - Add MITRE groups, custom layers, or threat intel URLs
    - Adjust weights based on organizational priorities (0.0 to 1.0)
 
-3. **Add Coverage Data**:
+4. **Add Coverage Data**:
    - Place your DeTTECT YAML file in `./data/dettect_coverage.yaml`
    - Or use the auto-generated sample file for testing
 
-4. **Run All Cells**:
+5. **Run All Cells**:
    - In Jupyter: `Kernel → Restart & Run All`
    - The notebook will execute end-to-end
 
-5. **View Results**:
+6. **View Results**:
    - Open `output/gap_analysis_navigator.html` in your browser
    - Read `output/gap_analysis_report.md` for detailed findings
 
@@ -78,14 +85,16 @@ jupyter notebook attack_gap_analysis.ipynb
 
 ### Basic Workflow
 
-The notebook follows a 15-cell structure:
+The notebook follows this structure:
 
 1. **Setup** (Cells 1-3): Environment configuration and utilities
-2. **Data Ingestion** (Cells 4-7): Load MITRE data, Navigator layers, and attack_parser integration
-3. **Threat Configuration** (Cells 8-10): Configure threat actors and calculate composite threat
-4. **Coverage & Gaps** (Cells 11-12): Load DeTTECT coverage and calculate gaps
-5. **Output Generation** (Cells 13-14): Create Navigator visualizations and reports
-6. **Summary** (Cell 15): Review outputs and next steps
+2. **Data Ingestion** (Cells 4-6): Load MITRE data and Navigator layers
+3. **Optional Tools** (Cell 6a): Auto-download attack_parser.py for threat report parsing
+4. **Parser Integration** (Cell 7): Initialize attack_parser wrapper
+5. **Threat Configuration** (Cells 8-10): Configure threat actors and calculate composite threat
+6. **Coverage & Gaps** (Cells 11-12): Load DeTTECT coverage and calculate gaps
+7. **Output Generation** (Cells 13-14): Create Navigator visualizations and reports
+8. **Summary** (Cell 15): Review outputs and next steps
 
 ### Configuring Threat Actors
 
@@ -129,10 +138,12 @@ THREAT_ACTORS = [
 - Place layer files in `./layers/` directory
 - Useful for saved threat profiles or custom threat models
 
-**Parsed Intelligence** (`source: 'parsed'`):
-- Requires `attack_parser.py` in the project directory
-- Download from: https://github.com/mjmcphee/attack_parser
-- Parses threat reports from URLs, files, or text
+**Parsed Intelligence** (`source: 'parsed'`) - **OPTIONAL**:
+- Extracts ATT&CK techniques from threat reports (blogs, advisories, PDFs)
+- **Auto-installed** by the notebook (Block 6a downloads it automatically)
+- If auto-download fails, manual download: https://github.com/mjmcphee/attack_parser
+- Dependencies (requests, beautifulsoup4) already included in requirements.txt
+- If not needed, comment out any `'parsed'` threat actors in Block 8
 
 ### DeTTECT Coverage
 
@@ -223,14 +234,24 @@ attack_gap_analysis/
 
 ### Common Issues
 
+**Issue**: Block 9 fails with "attack_parser.py not found" when using parsed sources
+- **Cause**: Auto-download in Block 6a may have failed due to network issues
+- **Solution**:
+  1. Check Block 6a output for download errors
+  2. Re-run Block 6a to retry download
+  3. Or manually download from https://github.com/mjmcphee/attack_parser
+  4. Place in project root: `/home/parallels/Desktop/gap_analysis/attack_parser.py`
+  5. OR comment out any threat actors with `'source': 'parsed'` in Block 8
+
+**Issue**: Block output shows ATT&CK Version 17 after updating to 18
+- **Cause**: Jupyter kernel caches variables from previous runs
+- **Solution**: Click **Kernel → Restart & Run All** to clear cached variables
+
 **Issue**: ATT&CK data fails to download
 - **Solution**: Check internet connection; data will be cached locally after first download
 
 **Issue**: DeTTECT file not found
 - **Solution**: Sample file auto-generates; edit `data/dettect_coverage.yaml` with your coverage
-
-**Issue**: attack_parser.py not found
-- **Solution**: Download from https://github.com/mjmcphee/attack_parser or skip parsed sources
 
 **Issue**: Navigator layers won't load in browser
 - **Solution**: Use a modern browser (Chrome, Firefox, Edge); ensure files are in `output/` directory
@@ -247,17 +268,24 @@ attack_gap_analysis/
 
 ## Configuration Options
 
-### Cell 2: Global Configuration
+### Cell 1: ATT&CK Version Selection
 
 ```python
-# ATT&CK Version
+# Change this to use a different version of MITRE ATT&CK
+# Available versions: 10, 11, 12, 13, 14, 15, 16, 17, 18
+# Latest: 18 (as of January 2026)
 ATTACK_VERSION = "18"
-
-# Directory paths
-OUTPUT_DIR = Path("./output")
-DATA_DIR = Path("./data")
-LAYERS_DIR = Path("./layers")
 ```
+
+**Important:** After changing the ATT&CK version:
+1. Save the notebook
+2. Click **Kernel → Restart & Run All** to clear cached variables
+3. The new version will be downloaded and cached in `./data/`
+
+**Why choose a different version?**
+- **Consistency:** Match your organization's existing ATT&CK-based tools
+- **Stability:** Use a well-tested version for production analysis
+- **Comparison:** Run analyses across different versions to track coverage evolution
 
 ### Cell 8: Threat Actor Weights
 

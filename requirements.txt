@@ -1,12 +1,12 @@
 # ATT&CK Gap Analysis Framework - Requirements
 
 # Core Dependencies (Required)
-requests>=2.31.0
-pandas>=2.0.0
-pyyaml>=6.0
-beautifulsoup4>=4.12.0
-jupyter>=1.0.0
-ipywidgets>=8.0.0
+requests>=2.31.0        # HTTP requests, ATT&CK data fetching, attack_parser downloads
+pandas>=2.0.0           # Data manipulation and analysis
+pyyaml>=6.0             # DeTTECT YAML file parsing
+beautifulsoup4>=4.12.0  # HTML parsing for threat reports (used by attack_parser)
+jupyter>=1.0.0          # Jupyter notebook environment
+ipywidgets>=8.0.0       # Interactive notebook widgets
 
 # Optional Dependencies (Recommended)
 matplotlib>=3.7.0
