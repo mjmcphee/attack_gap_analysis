@@ -8,6 +8,7 @@ beautifulsoup4>=4.12.0  # HTML parsing for threat reports (used by attack_parser
 lxml                    # XML/HTML parser (used by BeautifulSoup)
 pypdf                   # PDF parsing (required by attack_parser for PDF threat reports)
 tabulate                # Markdown table formatting (required by pandas.to_markdown())
+markdown>=3.4.0         # Markdown to HTML conversion for reports
 jupyter>=1.0.0          # Jupyter notebook environment
 ipywidgets>=8.0.0       # Interactive notebook widgets
 
