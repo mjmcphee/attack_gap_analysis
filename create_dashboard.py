@@ -59,6 +59,11 @@ for tab_name, layer_path in layer_files.items():
 
     download_links.append(f'<a href="{layer_path.name}" download="{layer_path.name}" class="btn-small">{layer_path.name}</a>')
 
+# Add CSV data export link if it exists
+csv_file = OUTPUT_DIR / 'complete_ttp_data.csv'
+if csv_file.exists():
+    download_links.append(f'<a href="{csv_file.name}" download="{csv_file.name}" class="btn-small" style="background: #28a745;">📊 {csv_file.name}</a>')
+
 # Create Navigator URL
 all_layers_json = json.dumps(all_layers)
 all_layers_b64 = base64.b64encode(all_layers_json.encode('utf-8')).decode('utf-8')
@@ -152,7 +157,10 @@ html = f"""<!DOCTYPE html>
             </div>
 
             <div class="download-links">
-                <h4>💾 Download Layer Files</h4>
+                <h4>💾 Download Files</h4>
+                <p style="margin-bottom: 15px; color: #666; font-size: 14px;">
+                    Download Navigator JSON files to manually upload or the complete TTP data CSV for analysis in Excel/Google Sheets:
+                </p>
                 {''.join(download_links)}
             </div>
         </div>
@@ -181,4 +189,6 @@ print(f"\n💡 This dashboard includes:")
 print(f"   • Multi-layer Navigator link (all layers as tabs)")
 print(f"   • Complete gap analysis report embedded")
 print(f"   • Download links for all layer JSON files")
+if csv_file.exists():
+    print(f"   • Download link for complete TTP data CSV")
 print(f"   • Print-friendly format")
