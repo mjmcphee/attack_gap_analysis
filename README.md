@@ -317,7 +317,7 @@ Edit Cell 2 to customize Navigator colors:
 ```python
 GRADIENTS = {
     'threat': {
-        'colors': ['#ffffff', '#ff0000'],  # White to Red
+        'colors': ['#ffffff00', '#ff0000'],  # Transparent to Red
         'minValue': 1,
         'maxValue': 5
     }
