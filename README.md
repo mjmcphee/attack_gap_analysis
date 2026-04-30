@@ -34,7 +34,7 @@ This framework enables organizations to:
 
 1. Clone or download this repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/mjmcphee/attack_gap_analysis
 cd attack_gap_analysis
 ```
 
@@ -70,8 +70,8 @@ jupyter notebook attack_gap_analysis.ipynb
 ```
 
 2. **(Optional) Select ATT&CK Version** (Cell 1):
-   - Default is version 18 (latest)
-   - Edit `ATTACK_VERSION = "18"` to use a different version (10-18)
+   - Default is version 18 (19 is the latest, but not yet used in CTI reports)
+   - Edit `ATTACK_VERSION = "18"` to use a different version (10-19)
    - Restart kernel after changing: `Kernel → Restart & Run All`
 
 3. **Configure Threat Actors** (Cell 8):
