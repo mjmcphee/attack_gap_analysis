@@ -37,18 +37,7 @@ This framework enables organizations to:
 git clone https://github.com/mjmcphee/attack_gap_analysis
 cd attack_gap_analysis
 ```
-
-2. Launch Jupyter Notebook:
-```bash
-jupyter notebook attack_gap_analysis.ipynb
-```
-
-**That's it!** The notebook will automatically install all required dependencies when you run Cell 1.
-
-### Alternative: Manual Installation
-
-If you prefer to install dependencies manually (or the auto-install fails):
-
+2. Install Dependencies:
 ```bash
 pip install -r requirements.txt
 ```
@@ -59,6 +48,13 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
+
+3. Launch Jupyter Notebook:
+```bash
+jupyter notebook attack_gap_analysis.ipynb
+```
+
+**That's it!** The notebook will automatically install all remaining required dependencies when you run Cell 1.
 
 **Note:** The optional `attack_parser.py` tool (for parsing threat reports) is automatically downloaded when you run the notebook. Dependencies (beautifulsoup4, lxml, requests) are auto-installed by Cell 1.
 
